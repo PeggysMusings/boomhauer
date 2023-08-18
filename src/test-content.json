@@ -1,0 +1,23 @@
+[
+    {
+        "id":1,
+        "episode":"S1E1",
+        "timestamp":297339,
+        "quote": "Test quote 1",
+        "url": "https://variety.com/wp-content/uploads/2023/01/King-of-the-Hill-1-e1675177939714.jpg"
+    },
+    {
+        "id":2,
+        "episode":"S1E2",
+        "timestamp":1250166,
+        "quote": "Test quote 2",
+        "url": "https://variety.com/wp-content/uploads/2023/01/King-of-the-Hill-1-e1675177939714.jpg"
+    },
+    {
+        "id":3,
+        "episode":"S1E3",
+        "timestamp":1250166,
+        "quote": "Test quote 3",
+        "url": "https://variety.com/wp-content/uploads/2023/01/King-of-the-Hill-1-e1675177939714.jpg"
+    }
+]
