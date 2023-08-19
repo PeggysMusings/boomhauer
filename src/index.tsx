@@ -8,10 +8,10 @@ import { SearchProvider } from './context/search.context';
 import { SelectionProvider } from './context/selection.context';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000',
-  cache: new InMemoryCache()
-});
+// const client = new ApolloClient({
+//   uri: 'http://localhost:4000',
+//   cache: new InMemoryCache()
+// });
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
+    {/* <ApolloProvider client={client}> */}
       <SearchProvider>
         <SelectionProvider>
           <BrowserRouter>
@@ -27,7 +27,7 @@ root.render(
           </BrowserRouter>
         </SelectionProvider>
       </SearchProvider>
-    </ApolloProvider>
+    {/* </ApolloProvider> */}
   </React.StrictMode>
 );
 

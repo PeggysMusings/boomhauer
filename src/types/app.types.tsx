@@ -1,5 +1,3 @@
-const { gql } = require('@apollo/client');
-
 export interface ISearchBarProps {
     onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -27,17 +25,3 @@ export interface SelectedImgProps {
     quote: String;
     url: String;
 };
-
-export const gqlTypes = gql`
-    type Query {
-        selectedImg: [SelectedImg!]!
-    }
-    
-    type SelectedImg {
-        id: Int!
-        episode: String!
-        timestamp: Int!
-        quote: String!
-        url: String!
-    }
-`

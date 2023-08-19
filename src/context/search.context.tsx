@@ -46,19 +46,19 @@ export const SearchProvider = ({ children }: ISearchProviderProps) => {
     //     setResults(filteredResults);
     //   }, [query]);
 
-    useEffect(() => {       
-        if (!query) {
-          setResults([]);
-          return;
-        }
+    // useEffect(() => {       
+    //     if (!query) {
+    //       setResults([]);
+    //       return;
+    //     }
         
-        console.log(results);
-      }, [query]);
+    //     console.log(results);
+    //   }, [query]);
 
-    const data = useQuery(GET_IMAGES);
+    // const data = useQuery(GET_IMAGES);
 
-    console.log(results);
-    console.log(data);
+    // console.log(results);
+    // console.log(data);
     
     return (
       <SearchContext.Provider value={{ query, results, setQuery, setResults }}>
