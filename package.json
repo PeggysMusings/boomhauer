@@ -31,7 +31,8 @@
   "type": "module",
   "scripts": {
     "compile": "tsc",
-    "start": "npm run compile && node src/utils/apollo-init.js"
+    "react-start": "react-scripts start",
+    "apollo-server-start": "npm run compile && node src/utils/apollo-init.js"
   },
   "eslintConfig": {
     "extends": [
