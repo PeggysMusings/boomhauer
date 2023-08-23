@@ -1,5 +1,9 @@
 # Ignore node modules folder
 node_modules
 
-# Ignore yarn lock
+# lock files
 yarn.lock
+package-lock.json
+
+# error logs
+yarn-error.log
