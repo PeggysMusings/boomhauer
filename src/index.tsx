@@ -6,10 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { SearchProvider } from './context/search.context';
 import { SelectionProvider } from './context/selection.context';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache, gql } from '@apollo/client';
 
 // const client = new ApolloClient({
-//   uri: 'http://localhost:4000',
+//   uri: 'https://127.0.0.1:4000',
 //   cache: new InMemoryCache()
 // });
 
