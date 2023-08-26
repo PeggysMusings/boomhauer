@@ -21,7 +21,7 @@ export const resolvers = {
         if (query == '') {
             return []
         }
-        const results = testData.filter(testData => testData.quote.includes(query));
+        const results = testData.filter(testData => testData.quote.toLowerCase().includes(query.toLowerCase()));
         return results?.map(({ id, episode, timestamp, quote, url }) => ({ id, episode, timestamp, quote, url }));
       },
     }
