@@ -2,6 +2,7 @@
   "name": "koth-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "@apollo/client": "^3.8.1",
     "@apollo/server": "^4.9.1",
@@ -16,6 +17,7 @@
     "apollo-server": "^3.12.0",
     "apollo-server-core": "^3.12.0",
     "axios": "^1.4.0",
+    "cors": "^2.8.5",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
     "graphql": "^16.8.0",
     "react": "^18.2.0",

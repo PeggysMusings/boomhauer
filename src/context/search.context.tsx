@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { ISearchResultProps, SelectedImgProps } from '../types/app.types';
-import { resolvers } from '../utils/resolvers';
+import { resolvers } from '../utils/apollo-init';
 
 import { gql, useQuery } from '@apollo/client';
 
@@ -15,14 +15,6 @@ interface ISearchProviderProps {
     children: React.ReactNode;
   }
 
-const GET_IMAGES = gql`
-  query GetImages {
-    selectedImg {
-      id
-    }
-  }
-`
-
 export const SearchContext = createContext<ISearchContext>({
   query: '',
   results: [],
@@ -34,31 +26,37 @@ export const SearchProvider = ({ children }: ISearchProviderProps) => {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<ISearchResultProps[]>([]);
 
-    // useEffect(() => {       
-    //     if (!query) {
-    //       setResults([]);
-    //       return;
-    //     }
-    //     const filteredResults = testData.filter((result) =>
-    //         result.quote.toLowerCase().includes(query.toLowerCase())
-    //     );
-    //     setResults(filteredResults);
-    //   }, [query]);
+    const { loading, error, data } = useQuery(
+      gql`
+        query QuoteQuery($query: String!) {
+          imgByQuote(query: $query) {
+            id
+            episode
+            timestamp
+            quote
+            url
+          }
+        }
+      `,
+      {variables: {query: query}}
+    );
+  
+    if (loading) {
+      console.log("querying...")
+    }
+    if (error) {
+      console.error(error);
+    }
 
-    // useEffect(() => {       
-    //     if (!query) {
-    //       setResults([]);
-    //       return;
-    //     }
-        
-    //     console.log(results);
-    //   }, [query]);
+    useEffect(() => {       
+      if (!data || !data.imgByQuote) {
+        setResults([]);
+        return;
+      }
+      console.log(data.imgByQuote);
+      setResults(data.imgByQuote);
+    }, [data]);
 
-    // const data = useQuery(GET_IMAGES);
-
-    // console.log(results);
-    // console.log(data);
-    
     return (
       <SearchContext.Provider value={{ query, results, setQuery, setResults }}>
         {children}
