@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import boom from '../../assets/boom.jpg';
 import { SearchContext } from '../../context/search.context';
 import { ISearchResultProps } from '../../types/app.types';

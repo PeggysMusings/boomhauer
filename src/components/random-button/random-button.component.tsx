@@ -7,7 +7,7 @@ import { gql, useLazyQuery } from '@apollo/client';
 import { RANDOM_SELECTION_QUERY } from '../../graphql/queries';
 
 const RandomButton = () => {        
-    const { setSelection } = useContext(SelectionContext);
+    const { setOriginalUrl, setSelection } = useContext(SelectionContext);
     const navigate = useNavigate();
     const [randomId, setRandomId] = useState(null);
 
@@ -29,6 +29,7 @@ const RandomButton = () => {
     useEffect(() => {
         if (data && data.randomSelection) {
             setSelection(data.randomSelection);
+            setOriginalUrl(data.randomSelection.url);
             setRandomId(data.randomSelection.id);
         }
     }, [data, setSelection]);

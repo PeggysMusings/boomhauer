@@ -4,6 +4,8 @@ import { ISearchResultProps } from '../types/app.types';
 interface ISelectionContext {
   selection: ISearchResultProps;
   setSelection: (selection: ISearchResultProps) => void;
+  originalUrl: string;
+  setOriginalUrl: (originalUrl: string) => void;
 }
 
 interface ISelectionProviderProps {
@@ -19,6 +21,8 @@ export const SelectionContext = createContext<ISelectionContext>({
     url: '',
   },
   setSelection: () => {},
+  originalUrl: '',
+  setOriginalUrl: () => {},
 });
 
 export const SelectionProvider = ({ children }: ISelectionProviderProps) => {
@@ -30,8 +34,10 @@ export const SelectionProvider = ({ children }: ISelectionProviderProps) => {
     url: '',
   });
 
+  const [originalUrl, setOriginalUrl] = useState<string>('');
+
   return (
-    <SelectionContext.Provider value={{ selection, setSelection }}>
+    <SelectionContext.Provider value={{ selection, setSelection, originalUrl, setOriginalUrl }}>
       {children}
     </SelectionContext.Provider>
   );
