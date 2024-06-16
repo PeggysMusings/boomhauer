@@ -9,7 +9,7 @@ export const TxtManipulator = () => {
     // capture text box input to pass into encodeImageWithQuote
     // const textBoxContent = 
 
-    function onGenerateClick() {
+    const onGenerateClick = () => {
         encodeImageWithQuote(selection)
         .then((dataUrl) => duplicateSelectionWithNewUrl(selection, dataUrl))
         .then((newSelection:ISearchResultProps ) => {
@@ -28,14 +28,14 @@ export const TxtManipulator = () => {
         );
 };
 
-function duplicateSelectionWithNewUrl (selection: ISearchResultProps, newUrl: string) {
+const duplicateSelectionWithNewUrl = (selection: ISearchResultProps, newUrl: string) => {
     return {
         ...selection,
         url: newUrl
     };
 };
 
-function encodeImageWithQuote (selection: ISearchResultProps) {
+const encodeImageWithQuote = (selection: ISearchResultProps) => {
     const canvas = document.createElement("canvas");
     const img = new Image();
     img.src = selection.url;

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export const ReturnBar = () => {
     const navigate = useNavigate(); 
 
-    function onBackClick() {
+    const onBackClick = () => {
         navigate(`/`, { replace: true });
     };
     
