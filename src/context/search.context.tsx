@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { ISearchResultProps, SelectedImgProps } from '../types/app.types';
-import { resolvers } from '../utils/apollo-init';
+import { ISearchResultProps } from '../types/app.types';
 
 import { gql, useQuery } from '@apollo/client';
 
@@ -42,7 +41,7 @@ export const SearchProvider = ({ children }: ISearchProviderProps) => {
     );
   
     if (loading) {
-      console.log("querying...")
+      console.log("querying based on quote property...")
     }
     if (error) {
       console.error(error);
@@ -53,7 +52,6 @@ export const SearchProvider = ({ children }: ISearchProviderProps) => {
         setResults([]);
         return;
       }
-      console.log(data.imgByQuote);
       setResults(data.imgByQuote);
     }, [data]);
 

@@ -7,34 +7,32 @@ interface ISelectionContext {
 }
 
 interface ISelectionProviderProps {
-    children: React.ReactNode;
-  }
+  children: React.ReactNode;
+}
 
 export const SelectionContext = createContext<ISelectionContext>({
   selection: {
-        "id": 0,
-        "episode":'',
-        "timestamp":0,
-        "quote": '',
-        "url":'' 
-    },
+    id: 0,
+    episode: '',
+    timestamp: 0,
+    quote: '',
+    url: '',
+  },
   setSelection: () => {},
 });
 
 export const SelectionProvider = ({ children }: ISelectionProviderProps) => {
-    const [selection, setSelection] = useState<ISearchResultProps>(
-        {
-            "id": 0,
-            "episode":'',
-            "timestamp":0,
-            "quote": '',
-            "url":'' 
-        }
-    );
+  const [selection, setSelection] = useState<ISearchResultProps>({
+    id: 0,
+    episode: '',
+    timestamp: 0,
+    quote: '',
+    url: '',
+  });
 
-    return (
-      <SelectionContext.Provider value={{ selection, setSelection }}>
-        {children}
-      </SelectionContext.Provider>
-    );
-  };
+  return (
+    <SelectionContext.Provider value={{ selection, setSelection }}>
+      {children}
+    </SelectionContext.Provider>
+  );
+};

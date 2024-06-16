@@ -12,6 +12,8 @@ const gqlTypes = `#graphql
     type Query {
         selectedImgs(id: Int!): SelectedImg!
         imgByQuote(query: String!): [SelectedImg!]!
+        imgById(query: Int!): [SelectedImg!]!
+        randomSelection: SelectedImg!
     }
 `
 
@@ -23,6 +25,17 @@ export const resolvers = {
         }
         const results = testData.filter(testData => testData.quote.toLowerCase().includes(query.toLowerCase()));
         return results?.map(({ id, episode, timestamp, quote, url }) => ({ id, episode, timestamp, quote, url }));
+      },
+      imgById: (_, {query}) => {
+        if (query == '') {
+            return []
+        }
+        const results = testData.filter(testData => testData.id === query);
+        return results?.map(({ id, episode, timestamp, quote, url }) => ({ id, episode, timestamp, quote, url }));
+      },
+      randomSelection: () => {
+        const randomIndex = Math.floor(Math.random() * testData.length);
+        return testData[randomIndex];
       },
     }
   }
@@ -118,9 +131,12 @@ const server = new ApolloServer({
     typeDefs: gqlTypes,
     resolvers,
     cors: {
-        origin: ['http://localhost:3000'],
+        origin: [
+            'http://localhost:3000',
+            'https://studio.apollographql.com'
+        ],
         credentials: true,
-      },
+    },
 });
 
 console.log('attempting to start server');
