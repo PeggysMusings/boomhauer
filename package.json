@@ -4,8 +4,6 @@
   "private": true,
   "proxy": "http://localhost:4000",
   "dependencies": {
-    "@apollo/client": "^3.8.1",
-    "@apollo/server": "^4.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,12 +12,9 @@
     "@types/node": "^20.4.9",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.0.10",
-    "apollo-server": "^3.12.0",
-    "apollo-server-core": "^3.12.0",
     "axios": "^1.4.0",
     "cors": "^2.8.5",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
-    "graphql": "^16.8.0",
     "react": "^18.2.0",
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
@@ -33,8 +28,7 @@
   "type": "module",
   "scripts": {
     "compile": "tsc",
-    "react-start": "react-scripts start",
-    "apollo-server-start": "npm run compile && node src/utils/apollo-init.js"
+    "react-start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
@@ -55,7 +49,8 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "prettier": "^3.6.2"
   },
   "description": "KOTH meme app.",
   "main": "index.tsx",

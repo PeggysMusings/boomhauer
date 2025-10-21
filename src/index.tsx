@@ -6,12 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { SearchProvider } from './context/search.context';
 import { SelectionProvider } from './context/selection.context';
-import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, gql } from '@apollo/client';
-
-const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
-  cache: new InMemoryCache(),
-});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,15 +13,13 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <SearchProvider>
-        <SelectionProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </SelectionProvider>
-      </SearchProvider>
-    </ApolloProvider>
+    <SearchProvider>
+      <SelectionProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </SelectionProvider>
+    </SearchProvider>
   </React.StrictMode>
 );
 

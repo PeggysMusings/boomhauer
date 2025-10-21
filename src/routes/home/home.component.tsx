@@ -1,12 +1,16 @@
 import SearchList from '../../components/search-list/search-list.component';
 
 import { HomeContainer } from './home.styles';
-import { ISearchProps } from '../../types/app.types';
+import { ImageEntry } from '../../types/app.types';
 
-const Home = ({ results }: ISearchProps) => 
+interface IHomeProps {
+    results: ImageEntry[];
+}
+
+const Home = ({ results }: IHomeProps) => (
     <HomeContainer id={"main-container"}>
-        <SearchList results={ results } />
+        <SearchList results={results} />
     </HomeContainer>
-;
+);
 
 export default Home;

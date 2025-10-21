@@ -1,19 +1,23 @@
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { SelectionContext } from "../../context/selection.context";
 import { GenerateButton, TextContainer, TxtManipulatorContainer } from "./txt-manipulator.styles";
-import { ISearchResultProps } from "../../types/app.types";
+import { ImageEntry } from "../../types/app.types";
 
 export const TxtManipulator = () => {
-    const { selection, setSelection, originalUrl } = useContext(SelectionContext);
-    const [textValue, setTextValue] = useState(selection.quote);
+    const { selection, setSelection } = useContext(SelectionContext);
+    const [textValue, setTextValue] = useState<string>(selection.quote);
 
-    const onGenerateClick = () => {
-        encodeImageWithQuote(selection, originalUrl, textValue)
+    useEffect(() => {
+        setTextValue(selection.quote);
+    }, [selection.quote]);
+
+    const onGenerateClick = async () => {
+        await encodeImageWithQuote(selection.url, textValue)
             .then((dataUrl: string) => duplicateSelectionWithNewUrl(selection, dataUrl))
-            .then((newSelection: ISearchResultProps) => {
+            .then((newSelection: ImageEntry) => {
                 setSelection(newSelection)
-                document.getElementById("selected-image-container")?.setAttribute("src", newSelection.url);
-            });
+            })
+            .catch();
     };
 
     const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,29 +25,29 @@ export const TxtManipulator = () => {
         console.log(textValue);
     };
 
-    return(
-            <TxtManipulatorContainer id={"text-create-container"}>
-                <TextContainer onChange={ onTextChange } value={textValue} />
-                <GenerateButton onClick={ onGenerateClick }>
-                    Generate Meme
-                </GenerateButton>
-            </TxtManipulatorContainer>
-        );
+    return (
+        <TxtManipulatorContainer id={"text-create-container"}>
+            <TextContainer onChange={onTextChange} value={textValue} />
+            <GenerateButton onClick={onGenerateClick}>
+                Generate Meme
+            </GenerateButton>
+        </TxtManipulatorContainer>
+    );
 };
 
-const duplicateSelectionWithNewUrl = (selection: ISearchResultProps, newUrl: string) => {
+const duplicateSelectionWithNewUrl = (selection: ImageEntry, newUrl: string) => {
     return {
         ...selection,
         url: newUrl
     };
 };
 
-const encodeImageWithQuote = (selection: ISearchResultProps, originalUrl: string, quote: string) => {
+const encodeImageWithQuote = (originalUrl: string, quote: string) => {
     const canvas = document.createElement("canvas");
     const img = new Image();
     img.src = originalUrl;
     img.crossOrigin = "anonymous";
-  
+
     return new Promise<string>((resolve, reject) => {
         img.onload = () => {
             canvas.width = img.width;
@@ -54,7 +58,7 @@ const encodeImageWithQuote = (selection: ISearchResultProps, originalUrl: string
                     // Clear previous content on canvas
                     context.clearRect(0, 0, canvas.width, canvas.height);
                     context.drawImage(img, 0, 0);
-            
+
                     context.fillStyle = "#fff";
                     context.font = "bold 24px Arial";
                     context.strokeStyle = "black";
@@ -70,8 +74,8 @@ const encodeImageWithQuote = (selection: ISearchResultProps, originalUrl: string
             } else {
                 reject();
             }
-      };
-  
-      img.onerror = reject;
+        };
+
+        img.onerror = reject;
     });
 };

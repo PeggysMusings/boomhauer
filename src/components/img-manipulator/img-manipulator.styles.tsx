@@ -10,5 +10,7 @@ export const ImgManipulatorContainer = styled.div`
 export const ImageContainer = styled.img`
     justify-self: center;
     align-self: center;
-    margin:10px;
+    margin: 10px;
+    height: auto;
+    width: 75%;
 `;

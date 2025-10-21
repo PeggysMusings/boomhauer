@@ -1,9 +1,10 @@
 import { createContext, useState } from 'react';
-import { ISearchResultProps } from '../types/app.types';
+import { ImageEntry } from '../types/app.types';
+import { emptySelection } from '../utils/utils';
 
 interface ISelectionContext {
-  selection: ISearchResultProps;
-  setSelection: (selection: ISearchResultProps) => void;
+  selection: ImageEntry;
+  setSelection: (selection: ImageEntry) => void;
   originalUrl: string;
   setOriginalUrl: (originalUrl: string) => void;
 }
@@ -13,26 +14,14 @@ interface ISelectionProviderProps {
 }
 
 export const SelectionContext = createContext<ISelectionContext>({
-  selection: {
-    id: 0,
-    episode: '',
-    timestamp: 0,
-    quote: '',
-    url: '',
-  },
+  selection: emptySelection,
   setSelection: () => {},
   originalUrl: '',
   setOriginalUrl: () => {},
 });
 
 export const SelectionProvider = ({ children }: ISelectionProviderProps) => {
-  const [selection, setSelection] = useState<ISearchResultProps>({
-    id: 0,
-    episode: '',
-    timestamp: 0,
-    quote: '',
-    url: '',
-  });
+  const [selection, setSelection] = useState<ImageEntry>(emptySelection);
 
   const [originalUrl, setOriginalUrl] = useState<string>('');
 

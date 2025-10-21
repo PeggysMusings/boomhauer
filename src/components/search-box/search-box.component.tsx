@@ -11,7 +11,7 @@ interface ISearchBoxProps {
 
 const SearchBox = ({ id, placeHolder, onChangeHandler }: ISearchBoxProps) => (
     <SearchBoxContainer
-        id={`search-box-${id}`}    
+        id={`search-box-${id}`}
         type='search'
         placeholder={placeHolder}
         onChange={onChangeHandler}

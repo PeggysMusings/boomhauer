@@ -1,12 +1,16 @@
 import SearchCard from "../search-card/search-card.component";
 
 import { SearchListContainer } from "./search-list.styles";
-import { ISearchProps } from "../../types/app.types"
+import { ImageEntry } from "../../types/app.types"
 
-const SearchList = ({ results }: ISearchProps) => (
+interface ISearchListProps {
+    results: ImageEntry[];
+}
+
+const SearchList = ({ results }: ISearchListProps) => (
     <SearchListContainer id={"search-results-container"}>
         {results.map(result => {
-            return(<SearchCard key={ result.id } result={ result } />);
+            return (<SearchCard key={result.id} result={result} />);
         })
         }
     </SearchListContainer>

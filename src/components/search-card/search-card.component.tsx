@@ -1,10 +1,14 @@
 import { SearchCardContainer } from "./search-card.styles";
-import { ISearchResultItemProps } from "../../types/app.types";
+import { ImageEntry } from "../../types/app.types";
 import { useContext } from "react";
 import { SelectionContext } from "../../context/selection.context";
 import { useNavigate } from "react-router-dom";
 
-const SearchCard = ({ result }: ISearchResultItemProps) => {
+interface ISearchCardProps {
+    result: ImageEntry;
+}
+
+const SearchCard = ({ result }: ISearchCardProps) => {
     const { id, url } = result;
 
     const { setSelection, setOriginalUrl } = useContext(SelectionContext);
@@ -16,7 +20,7 @@ const SearchCard = ({ result }: ISearchResultItemProps) => {
         navigate(`${result.id}`);
     };
 
-    return(
+    return (
         <SearchCardContainer id={"search-card-container"} src={url} alt={`${id}`} onClick={handleClick} />
     );
 };
