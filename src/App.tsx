@@ -16,7 +16,7 @@ function App() {
       element: (
         <>
           <SearchBar />
-          <Home results={results}/>
+          <Home results={results} />
         </>
       ),
     },
